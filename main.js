@@ -21,11 +21,10 @@ function renderPost(post) {
   reactions.classList.add('votes-class');
   resultsContainer.append(reactions);
 
-  // Like button
   let likeButton = document.createElement('button');
   likeButton.textContent = 'Like';
+
   likeButton.addEventListener('click', () => {
-    // Increment the reactions count and update the UI
     post.reactions++;
     reactions.textContent = 'Likes: ' + post.reactions;
   });
@@ -38,11 +37,8 @@ const url = 'https://dummyjson.com/posts/';
 
 //Create a function to save a post in local storage
 function savePost(post) {
-  //Generate a unique key for the post
   let key = 'post-' + Date.now();
-  //Convert the post object to a string
   let value = JSON.stringify(post);
-  //Save the post in local storage with the key and value
   localStorage.setItem(key, value);
 }
 
@@ -78,12 +74,9 @@ form.addEventListener('submit', (e) => {
   const object = Object.fromEntries(formData.entries());
   const json = JSON.stringify(object);
 
-  //Save the post in local storage
   savePost(object);
 
-  //Close the modal window
   modal.style.display = "none";
-  //Update the posts on the page
   getPosts();
 })
 
